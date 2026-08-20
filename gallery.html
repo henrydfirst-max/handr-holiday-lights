@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | H&R Holiday Lights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="photos/logo.png" alt="H&R Holiday Lights">
+        </a>
+    </div>
+
+    <div class="menu">
+       <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+        <div class="dropdown-menu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Our Work</a>
+            <a href="packages.html">Packages</a>
+            <a href="process.html">Our Process</a>
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ</a>
+            <a href="index.html#quote">Free Quote</a>
+        </div>
+    </div>
+
+</nav>
+
+
+<!-- GALLERY HEADER -->
+
+<section class="gallery-hero">
+
+    <h1>Our Work</h1>
+
+    <p>
+        Explore our residential and commercial holiday lighting installations.
+    </p>
+
+</section>
+
+
+<!-- GALLERY OPTIONS -->
+
+<div class="gallery-buttons">
+
+    <a href="residential.html" class="gallery-card residential-card">
+
+        <div class="gallery-card-content">
+            <h2>Residential</h2>
+            <p>Holiday lighting for homes</p>
+            <span>View Residential Work →</span>
+        </div>
+
+    </a>
+
+
+    <a href="commercial.html" class="gallery-card commercial-card">
+
+        <div class="gallery-card-content">
+            <h2>Commercial</h2>
+            <p>Holiday lighting for businesses</p>
+            <span>View Commercial Work →</span>
+        </div>
+
+    </a>
+
+</div>
+
+<script>
+function toggleMenu() {
+    document.querySelector(".dropdown-menu").classList.toggle("show");
+}
+</script>
+</body>
+</html>

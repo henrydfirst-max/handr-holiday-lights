@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial | H&R Holiday Lights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="photos/logo.png" alt="H&R Holiday Lights">
+        </a>
+    </div>
+
+    <div class="menu">
+      <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+        <div class="dropdown-menu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Our Work</a>
+            <a href="packages.html">Packages</a>
+            <a href="process.html">Our Process</a>
+            <a href="about.html">About Us</a>
+            <a href="faq.html">FAQ</a>
+            <a href="index.html#quote">Free Quote</a>
+        </div>
+    </div>
+
+</nav>
+
+
+<!-- COMMERCIAL HEADER -->
+
+<section class="gallery-hero">
+
+    <h1>Commercial Holiday Lighting</h1>
+
+    <p>
+        Professional lighting displays for businesses, office buildings,
+        shopping centers, restaurants, and more.
+    </p>
+
+</section>
+
+
+<!-- COMMERCIAL GALLERY -->
+
+<section class="gallery-page">
+
+    <div class="commercial-grid">
+
+        <img src="photos/OFD.jpeg" alt="Commercial holiday lighting">
+
+        <img src="photos/chipouras.jpeg" alt="Commercial holiday lighting">
+
+        <img src="photos/Dowagiac.jpeg" alt="Commercial holiday lighting">
+
+        <img src="photos/Big dowagiac.jpeg" alt="Commercial holiday lighting">
+
+    </div>
+
+</section>
+
+
+<!-- BACK BUTTON -->
+
+<div class="gallery-back">
+
+    <a href="gallery.html">
+        ← Back to Our Work
+    </a>
+
+</div>
+
+<script>
+function toggleMenu() {
+    document.querySelector(".dropdown-menu").classList.toggle("show");
+}
+</script>
+</body>
+</html>
+
