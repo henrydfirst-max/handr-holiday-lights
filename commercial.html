@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="gallery-body">
 
 <!-- NAVIGATION -->
 <nav class="navbar">
@@ -39,7 +39,9 @@
 
 <!-- COMMERCIAL HEADER -->
 
-<section class="gallery-hero">
+<section class="gallery-hero winter-gallery-hero">
+
+    <span class="gallery-kicker">Professional displays at scale</span>
 
     <h1>Commercial Holiday Lighting</h1>
 
@@ -53,32 +55,61 @@
 
 <!-- COMMERCIAL GALLERY -->
 
-<section class="gallery-page">
+<section class="gallery-page winter-gallery-page">
 
     <div class="commercial-grid">
 
-        <img src="photos/OFD.jpeg" alt="Commercial holiday lighting">
+        <img src="photos/OFD.jpeg" alt="Commercial building decorated with professional holiday lights" width="4032" height="3024" loading="lazy" decoding="async">
 
-        <img src="photos/chipouras.jpeg" alt="Commercial holiday lighting">
-
-        <img src="photos/Dowagiac.jpeg" alt="Commercial holiday lighting">
-
-        <img src="photos/Big dowagiac.jpeg" alt="Commercial holiday lighting">
+        <img src="photos/chipouras.jpeg" alt="Business exterior illuminated for the holiday season" width="4032" height="3024" loading="lazy" decoding="async">
 
     </div>
+
+    <figure class="commercial-video-feature">
+        <div class="commercial-video-frame">
+            <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="videos/commercial-display-poster.jpg"
+                aria-label="Video of a downtown commercial holiday lighting installation">
+                <source src="videos/commercial-display.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+            </video>
+        </div>
+
+        <figcaption>
+            <span>Featured commercial installation</span>
+            <h2>Downtown Holiday Lighting in Motion</h2>
+            <p>Press play to see the full roofline display across the downtown storefronts.</p>
+        </figcaption>
+    </figure>
 
 </section>
 
 
 <!-- BACK BUTTON -->
 
-<div class="gallery-back">
+<div class="gallery-back winter-gallery-back">
 
     <a href="gallery.html">
         ← Back to Our Work
     </a>
 
 </div>
+
+<footer>
+    <p>H&R Holiday Lights</p>
+    <p>Serving Southwest Michigan</p>
+    <p>Email: henrydfirst@gmail.com</p>
+    <p>Phone: (269) 743-8678</p>
+    <p class="footer-socials">
+        <a href="https://www.facebook.com/p/HR-Holiday-Lights-61552505682072/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://www.google.com/search?q=H%26R+Holiday+Lights+Mattawan+MI+reviews" target="_blank" rel="noopener noreferrer">Google Reviews</a>
+    </p>
+    <p>© 2026 H&R Holiday Lights LLC. All Rights Reserved.</p>
+</footer>
 
 <script>
 function toggleMenu() {
@@ -87,4 +118,3 @@ function toggleMenu() {
 </script>
 </body>
 </html>
-
