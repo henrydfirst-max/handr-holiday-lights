@@ -27,7 +27,7 @@
           "image": "https://handrholidaylights.com/photos/Bandos.jpeg",
           "description": "Locally owned professional holiday lighting company serving residential and commercial properties throughout Southwest Michigan.",
           "telephone": "+1-269-743-8678",
-          "email": "henrydfirst@gmail.com",
+          "email": "henry@handrholidaylights.com",
           "areaServed": [
             {
               "@type": "City",
@@ -165,11 +165,14 @@
     <div class="reviews-heading">
         <span>Customer experiences</span>
         <h2 id="reviews-heading">What Our Customers Are Saying</h2>
-        <p>Real feedback from homeowners who trust H&amp;R Holiday Lights with their holiday display.</p>
+        <p>Three Google reviews and growing. Read verified feedback from H&amp;R customers.</p>
     </div>
 
-    <div class="review-cards">
-        <article class="review-card review-card-current">
+    <div class="review-carousel" data-review-carousel aria-label="Customer Google reviews">
+        <div class="review-viewport">
+            <!-- Add new verified reviews as articles in this track; the carousel detects them automatically. -->
+            <div class="review-track" data-review-track>
+        <article class="review-card review-card-current review-slide" data-review-slide>
             <div class="review-card-top">
                 <div class="reviewer">
                     <span class="reviewer-avatar" aria-hidden="true">B</span>
@@ -214,7 +217,14 @@
                 </a>
             </div>
         </article>
-
+            </div>
+        </div>
+        <div class="review-carousel-controls" data-review-controls>
+            <button type="button" class="review-arrow" data-review-previous aria-label="Show previous review">←</button>
+            <div class="review-dots" data-review-dots aria-label="Choose a review"></div>
+            <button type="button" class="review-arrow" data-review-next aria-label="Show next review">→</button>
+        </div>
+        <a class="review-all-link" href="https://www.google.com/search?q=H%26R+Holiday+Lights+Mattawan+MI+reviews" target="_blank" rel="noopener noreferrer">View all 3 Google reviews <span aria-hidden="true">→</span></a>
     </div>
 </section>
 
@@ -455,7 +465,7 @@
 
 <select id="package" name="package" required>
     <option value="">Choose a package</option>
-    <option value="Classic Package">Classic Package ($800 - $1,200)</option>
+    <option value="Classic Package">Classic Package ($650 - $1,200)</option>
     <option value="Premium Package">Premium Package ($1,200 - $2,300)</option>
     <option value="Signature Package">Signature Package ($2,300+)</option>
     <option value="Commercial Package">Commercial Package (Custom Quote)</option>
@@ -493,7 +503,7 @@
 
     <p>Serving Southwest Michigan</p>
 
-    <p>Email: henrydfirst@gmail.com </p>
+    <p>Email: <a href="mailto:henry@handrholidaylights.com">henry@handrholidaylights.com</a></p>
 
     <p>Phone: (269) 743-8678</p>
 
@@ -582,6 +592,87 @@ if (projectCarousel) {
 
     showProject(0);
     startProjectRotation();
+}
+
+const reviewCarousel = document.querySelector("[data-review-carousel]");
+
+if (reviewCarousel) {
+    const reviewTrack = reviewCarousel.querySelector("[data-review-track]");
+    const reviewSlides = Array.from(reviewCarousel.querySelectorAll("[data-review-slide]"));
+    const reviewDots = reviewCarousel.querySelector("[data-review-dots]");
+    const reviewControls = reviewCarousel.querySelector("[data-review-controls]");
+    const previousReview = reviewCarousel.querySelector("[data-review-previous]");
+    const nextReview = reviewCarousel.querySelector("[data-review-next]");
+    const reduceReviewMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let activeReview = 0;
+    let reviewTimer;
+    let reviewTouchStart = 0;
+
+    const reviewDotButtons = reviewSlides.map((slide, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Show review ${index + 1}`);
+        dot.addEventListener("click", () => {
+            showReview(index);
+            startReviewRotation();
+        });
+        reviewDots.appendChild(dot);
+        return dot;
+    });
+
+    function showReview(index) {
+        activeReview = (index + reviewSlides.length) % reviewSlides.length;
+        reviewTrack.style.transform = `translateX(-${activeReview * 100}%)`;
+        reviewSlides.forEach((slide, slideIndex) => {
+            slide.setAttribute("aria-hidden", String(slideIndex !== activeReview));
+        });
+        reviewDotButtons.forEach((dot, dotIndex) => {
+            const isActive = dotIndex === activeReview;
+            dot.classList.toggle("is-active", isActive);
+            dot.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+    }
+
+    function stopReviewRotation() {
+        window.clearInterval(reviewTimer);
+    }
+
+    function startReviewRotation() {
+        stopReviewRotation();
+        if (!reduceReviewMotion && reviewSlides.length > 1) {
+            reviewTimer = window.setInterval(() => showReview(activeReview + 1), 6500);
+        }
+    }
+
+    previousReview.addEventListener("click", () => {
+        showReview(activeReview - 1);
+        startReviewRotation();
+    });
+    nextReview.addEventListener("click", () => {
+        showReview(activeReview + 1);
+        startReviewRotation();
+    });
+    reviewCarousel.addEventListener("mouseenter", stopReviewRotation);
+    reviewCarousel.addEventListener("mouseleave", startReviewRotation);
+    reviewCarousel.addEventListener("focusin", stopReviewRotation);
+    reviewCarousel.addEventListener("focusout", (event) => {
+        if (!reviewCarousel.contains(event.relatedTarget)) startReviewRotation();
+    });
+    reviewCarousel.addEventListener("touchstart", (event) => {
+        reviewTouchStart = event.changedTouches[0].clientX;
+        stopReviewRotation();
+    }, { passive: true });
+    reviewCarousel.addEventListener("touchend", (event) => {
+        const distance = event.changedTouches[0].clientX - reviewTouchStart;
+        if (Math.abs(distance) > 45 && reviewSlides.length > 1) {
+            showReview(activeReview + (distance < 0 ? 1 : -1));
+        }
+        startReviewRotation();
+    }, { passive: true });
+
+    reviewControls.hidden = reviewSlides.length <= 1;
+    showReview(0);
+    startReviewRotation();
 }
 </script>
 </body>

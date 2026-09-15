@@ -1340,6 +1340,16 @@ footer p:last-child {
     opacity: 0.86;
 }
 
+footer > p > a {
+    color: white;
+    font-weight: 750;
+    text-underline-offset: 3px;
+}
+
+footer > p > a:hover {
+    color: #b8f6db;
+}
+
 /* About page: shared photo first, story next, owners at the bottom. */
 .about-page {
     max-width: 1100px;
@@ -1961,12 +1971,25 @@ p {
     line-height: 1.7;
 }
 
-.review-cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
+.review-carousel {
     width: min(1120px, 100%);
     margin: 0 auto;
+}
+
+.review-viewport {
+    overflow: hidden;
+    border-radius: 16px;
+    touch-action: pan-y;
+}
+
+.review-track {
+    display: flex;
+    align-items: stretch;
+    transition: transform 0.55s ease;
+}
+
+.review-slide {
+    min-width: 100%;
 }
 
 .review-card {
@@ -1997,9 +2020,70 @@ p {
 }
 
 .review-card-current {
-    grid-column: 1 / -1;
     min-height: 0;
     padding: 38px 42px;
+}
+
+.review-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.review-carousel-controls[hidden] {
+    display: none;
+}
+
+.review-arrow {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(0, 142, 80, 0.24);
+    border-radius: 50%;
+    color: var(--holiday-navy);
+    background: white;
+    box-shadow: 0 7px 18px rgba(7, 30, 69, 0.1);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.review-arrow:hover,
+.review-arrow:focus-visible {
+    color: white;
+    background: var(--logo-green-dark);
+}
+
+.review-dots {
+    display: flex;
+    gap: 9px;
+}
+
+.review-dots button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: width 0.2s ease, background 0.2s ease;
+}
+
+.review-dots button.is-active {
+    width: 28px;
+    background: var(--logo-green);
+}
+
+.review-all-link {
+    display: table;
+    margin: 22px auto 0;
+    color: var(--logo-green-dark);
+    font-weight: 800;
+    text-underline-offset: 4px;
 }
 
 .reviewer {
@@ -2318,18 +2402,13 @@ footer::before {
         font-size: 30px;
     }
 
-    .review-cards {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
     .review-card {
         min-height: 0;
         padding: 24px;
     }
 
     .review-card-current {
-        grid-column: auto;
+        padding: 26px 24px;
     }
 
     .review-card-top {
@@ -3272,6 +3351,9 @@ body.gallery-body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .review-track {
+        transition: none;
+    }
     .project-slide.is-active {
         animation: none;
     }
